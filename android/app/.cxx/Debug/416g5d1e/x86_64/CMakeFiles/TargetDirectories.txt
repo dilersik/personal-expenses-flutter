@@ -1,0 +1,2 @@
+C:/workspace/curso_flutter/personal_expenses/android/app/.cxx/Debug/416g5d1e/x86_64/CMakeFiles/edit_cache.dir
+C:/workspace/curso_flutter/personal_expenses/android/app/.cxx/Debug/416g5d1e/x86_64/CMakeFiles/rebuild_cache.dir
