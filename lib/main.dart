@@ -23,15 +23,21 @@ class MyHomePage extends StatelessWidget {
     Transaction(
       id: 't1',
       title: 'New Shoes',
-      value: 69.99,
+      value: 300.99,
       date: DateTime.now(),
     ),
     Transaction(
       id: 't2',
-      title: 'Weekly Groceries',
-      value: 16.53,
+      title: 'Groceries',
+      value: 20.53,
       date: DateTime.now(),
     ),
+    Transaction(
+      id: 't3',
+      title: 'New PPKs',
+      value: 3000.99,
+      date: DateTime.now(),
+    )
   ];
 
   @override
@@ -70,7 +76,7 @@ class MyHomePage extends StatelessWidget {
                         ),
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          transaction.value.toString(),
+                          "R\$ ${transaction.value.toStringAsFixed(2)}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
