@@ -52,7 +52,6 @@ class MyHomePage extends StatelessWidget {
           backgroundColor: Colors.blue,
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(
@@ -108,6 +107,30 @@ class MyHomePage extends StatelessWidget {
                 );
               }).toList(),
             ),
+            Card(
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Title'),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Value (R\$)'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.purple,
+                        foregroundColor: Colors.white,
+                      ),
+                      child: Text('New Transaction'),
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         ));
   }
