@@ -37,13 +37,24 @@ class _TransactionUserState extends State<TransactionUser> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TransactionList(_transactions, onRemove),
-        TransactionForm(addTransaction),
+        TransactionList(_transactions, _onRemove),
+        TransactionForm(_addTransaction),
       ],
     );
   }
 
-  void onRemove(String p1) {}
+  void _onRemove(String p1) {}
 
-  void addTransaction() {}
+  void _addTransaction(String title, double value) {
+    final newTransaction = Transaction(
+      id: DateTime.now().toString(),
+      title: title,
+      value: value,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+  }
 }

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_expenses/components/transaction_form.dart';
-import 'package:personal_expenses/components/transaction_list.dart';
 import 'package:personal_expenses/components/transaction_user.dart';
-import 'package:personal_expenses/models/transaction.dart';
-import 'package:intl/intl.dart';
 
 void main() {
   runApp(ExpensesApp());
@@ -20,14 +16,9 @@ class ExpensesApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TransactionUser(),
           ],
-        ));
+        ),
+    );
   }
 }
