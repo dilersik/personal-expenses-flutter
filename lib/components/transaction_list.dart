@@ -11,43 +11,48 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: transactions.map((transaction) {
-        return Card(
-          elevation: 5,
-          margin: EdgeInsets.symmetric(
-            vertical: 8,
-            horizontal: 5,
-          ),
-          child: ListTile(
-            leading: CircleAvatar(
-              radius: 30,
-              child: Padding(
-                padding: const EdgeInsets.all(6),
-                child: FittedBox(
-                  child: Text('R\$${transaction.value}'),
+    return SizedBox(
+      height: 300,
+      child: ListView.builder(
+        itemCount: transactions.length,
+        itemBuilder: (ctx, index) {
+          final transaction = transactions[index];
+          return Card(
+            elevation: 5,
+            margin: EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 5,
+            ),
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30,
+                child: Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: FittedBox(
+                    child: Text('R\$${transaction.value}'),
+                  ),
                 ),
               ),
-            ),
-            title: Text(
-              transaction.title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.purple,
+              title: Text(
+                transaction.title,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.purple,
+                ),
+              ),
+              subtitle: Text(
+                DateFormat('d MMM y').format(transaction.date),
+              ),
+              trailing: IconButton(
+                icon: Icon(Icons.delete),
+                color: Theme.of(context).colorScheme.error,
+                onPressed: () => onRemove(transaction.id),
               ),
             ),
-            subtitle: Text(
-              DateFormat('d MMM y').format(transaction.date),
-            ),
-            trailing: IconButton(
-              icon: Icon(Icons.delete),
-              color: Theme.of(context).colorScheme.error,
-              onPressed: () => onRemove(transaction.id),
-            ),
-          ),
-        );
-      }).toList(),
+          );
+        },
+      ),
     );
   }
 }
