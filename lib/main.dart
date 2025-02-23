@@ -29,18 +29,20 @@ class MyHomePage extends StatelessWidget {
           ),
           backgroundColor: Colors.blue,
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              child: Card(
-                color: Colors.blue,
-                elevation: 5,
-                child: Text("Chart"),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                child: Card(
+                  color: Colors.blue,
+                  elevation: 5,
+                  child: Text("Chart"),
+                ),
               ),
-            ),
-            TransactionUser(),
-          ],
+              TransactionUser(),
+            ],
+          ),
         ),
     );
   }
