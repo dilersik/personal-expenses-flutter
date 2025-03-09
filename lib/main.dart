@@ -27,7 +27,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   final _transactions = [
     Transaction(
       id: 't1',
@@ -60,11 +59,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _transactions.add(newTransaction);
     });
+
+    Navigator.of(context).pop();
   }
 
   void _onRemove(String p1) {}
 
-  _openTransactionFormModal(BuildContext context) {
+  void _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (_) {
@@ -89,20 +90,20 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              child: Card(
-                color: Colors.blue,
-                elevation: 5,
-                child: Text("Chart"),
-              ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            child: Card(
+              color: Colors.blue,
+              elevation: 5,
+              child: Text("Chart"),
             ),
-            TransactionList(_transactions, _onRemove),
-          ],
-        ),
+          ),
+          Expanded(
+            child: TransactionList(_transactions, _onRemove),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _openTransactionFormModal(context),
