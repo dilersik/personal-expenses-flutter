@@ -22,12 +22,30 @@ class ExpensesApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.purple,
           foregroundColor: Colors.white,
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.purple, // Use a solid color
           primary: Colors.purple,
           secondary: Colors.deepPurple, // More readable secondary color
           tertiary: Colors.white,
+        ),
+        fontFamily: "Quicksand",
+        textTheme: ThemeData.light().textTheme.copyWith(
+          titleLarge: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+          bodySmall: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 12,
+            color: Colors.black54,
+          ),
         ),
       ),
     );
@@ -93,9 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Personal Expenses',
-        ),
+        title: Text('Personal Expenses'),
         actions: [
           IconButton(
             onPressed: () => _openTransactionFormModal(context),

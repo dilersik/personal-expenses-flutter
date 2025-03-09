@@ -31,20 +31,23 @@ class TransactionList extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(6),
                   child: FittedBox(
-                    child: Text('R\$${transaction.value}'),
+                    child: Text(
+                      'R\$ ${transaction.value}',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ),
               title: Text(
                 transaction.title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               subtitle: Text(
                 DateFormat('d MMM y').format(transaction.date),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               trailing: IconButton(
                 icon: Icon(Icons.delete),
