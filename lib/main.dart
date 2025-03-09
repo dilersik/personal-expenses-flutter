@@ -9,12 +9,27 @@ void main() {
 }
 
 class ExpensesApp extends StatelessWidget {
-  const ExpensesApp({super.key});
+  ExpensesApp({super.key});
+
+  final ThemeData theme = ThemeData();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
+      home: const MyHomePage(),
+      theme: ThemeData(
+        useMaterial3: false,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.purple,
+          foregroundColor: Colors.white,
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.purple, // Use a solid color
+          primary: Colors.purple,
+          secondary: Colors.deepPurple, // More readable secondary color
+          tertiary: Colors.white,
+        ),
+      ),
     );
   }
 }
@@ -80,9 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(
           'Personal Expenses',
-          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
         actions: [
           IconButton(
             onPressed: () => _openTransactionFormModal(context),
@@ -95,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           SizedBox(
             child: Card(
-              color: Colors.blue,
+              color: Theme.of(context).colorScheme.primary,
               elevation: 5,
               child: Text("Chart"),
             ),

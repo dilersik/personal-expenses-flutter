@@ -25,6 +25,8 @@ class TransactionList extends StatelessWidget {
             ),
             child: ListTile(
               leading: CircleAvatar(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.tertiary,
                 radius: 30,
                 child: Padding(
                   padding: const EdgeInsets.all(6),
@@ -38,7 +40,7 @@ class TransactionList extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
-                  color: Colors.purple,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               subtitle: Text(
