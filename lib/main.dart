@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:personal_expenses/components/transaction_form.dart';
 
+import 'components/chart.dart';
+import 'components/transaction_form.dart';
 import 'components/transaction_list.dart';
 import 'models/transaction.dart';
 
@@ -65,21 +66,35 @@ class _MyHomePageState extends State<MyHomePage> {
       id: 't1',
       title: 'New Shoes',
       value: 300.99,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 33)),
     ),
     Transaction(
       id: 't2',
       title: 'Groceries',
       value: 20.53,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 4)),
     ),
     Transaction(
       id: 't3',
       title: 'New PPKs',
       value: 3000.99,
       date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't4',
+      title: 'Mais uma',
+      value: 100.99,
+      date: DateTime.now(),
     )
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((transaction) {
+      return transaction.date.isAfter(
+        DateTime.now().subtract(Duration(days: 7)),
+      );
+    }).toList();
+  }
 
   void _addTransaction(String title, double value) {
     final newTransaction = Transaction(
@@ -122,13 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
-            child: Card(
-              color: Colors.blue,
-              elevation: 5,
-              child: Text("Chart"),
-            ),
-          ),
+          Chart(recentTransactions: _recentTransactions),
           Expanded(
             child: TransactionList(_transactions, _onRemove),
           ),
