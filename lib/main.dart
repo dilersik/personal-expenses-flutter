@@ -66,25 +66,25 @@ class _MyHomePageState extends State<MyHomePage> {
       id: 't1',
       title: 'New Shoes',
       value: 300.99,
-      date: DateTime.now().subtract(Duration(days: 33)),
+      date: DateTime.now().subtract(Duration(days: 5)),
     ),
     Transaction(
       id: 't2',
       title: 'Groceries',
-      value: 20.53,
+      value: 200.53,
       date: DateTime.now().subtract(Duration(days: 4)),
     ),
     Transaction(
       id: 't3',
       title: 'New PPKs',
-      value: 3000.99,
-      date: DateTime.now(),
+      value: 500.99,
+      date: DateTime.now().subtract(Duration(days: 3)),
     ),
     Transaction(
       id: 't4',
       title: 'Mais uma',
       value: 100.99,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 2)),
     )
   ];
 
