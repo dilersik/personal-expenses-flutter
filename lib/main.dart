@@ -48,6 +48,13 @@ class ExpensesApp extends StatelessWidget {
             color: Colors.black54,
           ),
         ),
+        buttonTheme: ThemeData.light().buttonTheme.copyWith(
+          buttonColor: Colors.purple,
+          textTheme: ButtonTextTheme.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        )
       ),
     );
   }

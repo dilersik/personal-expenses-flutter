@@ -41,12 +41,25 @@ class _TransactionFormState extends State<TransactionForm> {
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (_) => _submitForm(),
             ),
+            Padding(padding: EdgeInsets.all(6)),
+            Row(
+              children: [
+                Text('No date selected!'),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Select Date',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(padding: EdgeInsets.all(6)),
             ElevatedButton(
               onPressed: () { _submitForm(); },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
-                foregroundColor: Colors.white,
-              ),
               child: Text('New Transaction'),
             )
           ],
