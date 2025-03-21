@@ -110,7 +110,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      title: Text('Personal Expenses'),
+      title: Text(
+        'Personal Expenses',
+        style: TextStyle(fontSize: MediaQuery.of(context).textScaler.scale(18)),
+      ),
       actions: [
         IconButton(
           onPressed: () => _openTransactionFormModal(context),
