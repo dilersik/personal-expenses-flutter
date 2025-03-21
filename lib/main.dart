@@ -19,43 +19,42 @@ class ExpensesApp extends StatelessWidget {
     return MaterialApp(
       home: const MyHomePage(),
       theme: ThemeData(
-        useMaterial3: false,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.purple,
-          foregroundColor: Colors.white,
-          titleTextStyle: TextStyle(
-            fontFamily: 'OpenSans',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+          useMaterial3: false,
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.purple,
+            foregroundColor: Colors.white,
+            titleTextStyle: TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.purple, // Use a solid color
-          primary: Colors.purple,
-          secondary: Colors.deepPurple, // More readable secondary color
-          tertiary: Colors.white,
-        ),
-        fontFamily: "Quicksand",
-        textTheme: ThemeData.light().textTheme.copyWith(
-          titleLarge: TextStyle(
-            fontFamily: 'OpenSans',
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.purple, // Use a solid color
+            primary: Colors.purple,
+            secondary: Colors.deepPurple, // More readable secondary color
+            tertiary: Colors.white,
           ),
-          bodySmall: TextStyle(
-            fontFamily: 'OpenSans',
-            fontSize: 12,
-            color: Colors.black54,
-          ),
-        ),
-        buttonTheme: ThemeData.light().buttonTheme.copyWith(
-          buttonColor: Colors.purple,
-          textTheme: ButtonTextTheme.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        )
-      ),
+          fontFamily: "Quicksand",
+          textTheme: ThemeData.light().textTheme.copyWith(
+                titleLarge: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                bodySmall: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 12,
+                  color: Colors.black54,
+                ),
+              ),
+          buttonTheme: ThemeData.light().buttonTheme.copyWith(
+                buttonColor: Colors.purple,
+                textTheme: ButtonTextTheme.primary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              )),
     );
   }
 }
@@ -110,24 +109,35 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text('Personal Expenses'),
+      actions: [
+        IconButton(
+          onPressed: () => _openTransactionFormModal(context),
+          icon: Icon(Icons.add),
+        ),
+      ],
+    );
+
+    final availableHeight =
+        MediaQuery.of(context).size.height - appBar.preferredSize.height - MediaQuery.of(context).padding.top;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Personal Expenses'),
-        actions: [
-          IconButton(
-            onPressed: () => _openTransactionFormModal(context),
-            icon: Icon(Icons.add),
-          ),
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Chart(recentTransactions: _recentTransactions),
-          Expanded(
-            child: TransactionList(_transactions, _onRemove),
-          ),
-        ],
+      appBar: appBar,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              height: availableHeight * 0.2,
+              child: Chart(recentTransactions: _recentTransactions),
+            ),
+            SizedBox(
+              height: availableHeight * 0.8,
+              child: TransactionList(_transactions, _onRemove),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _openTransactionFormModal(context),
