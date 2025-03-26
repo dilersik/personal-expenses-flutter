@@ -41,45 +41,52 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(labelText: 'Title'),
-              controller: _titleController,
-            ),
-            TextField(
-              decoration: InputDecoration(labelText: 'Value (R\$)'),
-              controller: _valueController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => _submitForm(),
-            ),
-            Padding(padding: EdgeInsets.all(6)),
-            Row(
-              children: [
-                Expanded(
-                  child: Text("Date: ${DateFormat('dd/MM/y').format(_selectedDate)}"),
-                ),
-                TextButton(
-                  onPressed: _showDatePicker,
-                  child: Text(
-                    'Select Date',
-                    style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 10,
+            right: 10,
+            left: 10,
+            bottom: 10 + MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            children: [
+              TextField(
+                decoration: InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+              ),
+              TextField(
+                decoration: InputDecoration(labelText: 'Value (R\$)'),
+                controller: _valueController,
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                onSubmitted: (_) => _submitForm(),
+              ),
+              Padding(padding: EdgeInsets.all(6)),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text("Date: ${DateFormat('dd/MM/y').format(_selectedDate)}"),
                   ),
-                ),
-              ],
-            ),
-            Padding(padding: EdgeInsets.all(6)),
-            ElevatedButton(
-              onPressed: () {
-                _submitForm();
-              },
-              child: Text('New Transaction'),
-            )
-          ],
+                  TextButton(
+                    onPressed: _showDatePicker,
+                    child: Text(
+                      'Select Date',
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(padding: EdgeInsets.all(6)),
+              ElevatedButton(
+                onPressed: () {
+                  _submitForm();
+                },
+                child: Text('New Transaction'),
+              )
+            ],
+          ),
         ),
       ),
     );
