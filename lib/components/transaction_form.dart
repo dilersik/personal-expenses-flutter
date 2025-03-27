@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:personal_expenses/components/adaptive_button.dart';
+import 'package:personal_expenses/components/adaptive_date_picker.dart';
 import 'package:personal_expenses/components/adaptive_text_field.dart';
 
 class TransactionForm extends StatefulWidget {
@@ -24,21 +24,6 @@ class _TransactionFormState extends State<TransactionForm> {
     if (title.isNotEmpty && value > 0) {
       widget.onSubmit(title, value, _selectedDate);
     }
-  }
-
-  _showDatePicker() {
-    showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2021),
-      lastDate: DateTime.now(),
-    ).then((date) {
-      if (date == null) return;
-
-      setState(() {
-        _selectedDate = date;
-      });
-    });
   }
 
   @override
@@ -67,19 +52,9 @@ class _TransactionFormState extends State<TransactionForm> {
                 onSubmitted: (_) => _submitForm(),
               ),
               Padding(padding: EdgeInsets.all(6)),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text("Date: ${DateFormat('dd/MM/y').format(_selectedDate)}"),
-                  ),
-                  TextButton(
-                    onPressed: _showDatePicker,
-                    child: Text(
-                      'Select Date',
-                      style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
-                    ),
-                  ),
-                ],
+              AdaptiveDatePicker(
+                selectedDate: _selectedDate,
+                onDateChanged: (date) => setState(() => _selectedDate = date),
               ),
               Padding(padding: EdgeInsets.all(6)),
               AdaptiveButton(label: "New Transaction", onPressed: _submitForm)
